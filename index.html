@@ -222,7 +222,7 @@
   <script>
     const WHATSAPP = "201014665072";
     const products = [
-      { id: 1, title: "Magic Mug", category: "هدايا", price: 250, img: "https://youtube.com/shorts/FK7l9huS8aE?si=FOtKTWFivZPu2wt1", desc: "مج سحري يمكنك اضافة 3 صور علي المج الخاص بك." },
+      { id: 1, title: "Magic Mug", category: "هدايا", price: 250, img: "https://youtube.com/shorts/FK7l9huS8aE?si=_anjZ6hIr_iJ1OhW", desc: "مج سحري يمكنك اضافة 3 صور علي المج الخاص بك." },
       { id: 3, title: "عصير برتقال", category: "مشروبات", price: 30, img: "https://img-global.cpcdn.com/recipes/9c0d7613848f6431/240x320cq80/photo.jpg", desc: "عصير طبيعي فريش معمول من فواكه طازة ومتختارش غير الأجود" },
       { id: 4, title: "Mug", category: "هدايا", price: 200, img: "https://i5.walmartimages.com/seo/CafePress-Abby-Normal-Mug-11-oz-Ceramic-Mug-Novelty-Coffee-Tea-Cup_9eaeab05-fc07-41b5-8ebd-8ec6a055cd17.7d660b5e96e6264e1d17e109b2c71ea8.jpeg", desc: "مج أنيق عملي تقدر تستخدمه كل يوم للقهوة أو الشاي" }
     
@@ -234,26 +234,36 @@
     const categories = ["الكل", ...new Set(products.map(p => p.category))];
     let currentCategory = "الكل";
 
-    function getMediaHTML(url) {
-      // لو الرابط من يوتيوب
-      if (url.includes("youtube.com") || url.includes("youtu.be")) {
-        let videoId = "";
-        if (url.includes("watch?v=")) {
-          videoId = url.split("watch?v=")[1].split("&")[0];
-        } else if (url.includes("youtu.be/")) {
-          videoId = url.split("youtu.be/")[1].split("?")[0];
-        }
-        return `<iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
-      }
-
-      // لو الرابط صورة (ينتهي بـ jpg/png/webp/gif)
-      if (/\.(jpg|jpeg|png|webp|gif)$/i.test(url) || url.includes("picsum.photos")) {
-        return `<img src="${url}" alt="صورة المنتج">`;
-      }
-
-      // أي شيء تاني يعرضه كصورة افتراضية
-      return `<img src="https://via.placeholder.com/600x400?text=No+Preview" alt="Preview">`;
+   function getMediaHTML(url) {
+  // لو الرابط من يوتيوب
+  if (url.includes("youtube.com") || url.includes("youtu.be")) {
+    let videoId = "";
+    if (url.includes("watch?v=")) {
+      videoId = url.split("watch?v=")[1].split("&")[0];
+    } else if (url.includes("youtu.be/")) {
+      videoId = url.split("youtu.be/")[1].split("?")[0];
+    } else if (url.includes("shorts/")) {
+      videoId = url.split("shorts/")[1].split("?")[0];
     }
+
+    return `
+      <iframe 
+        src="https://www.youtube.com/embed/${videoId}" 
+        allowfullscreen 
+        style="width:100%;height:100%;border:none;">
+      </iframe>
+    `;
+  }
+
+  // لو الرابط صورة
+  if (/\.(jpg|jpeg|png|webp|gif)$/i.test(url) || url.includes("picsum.photos")) {
+    return `<img src="${url}" alt="صورة المنتج">`;
+  }
+
+  // أي شيء تاني يعرضه كصورة افتراضية
+  return `<img src="https://via.placeholder.com/600x400?text=No+Preview" alt="Preview">`;
+}
+
 
     function renderFilters() {
       filtersContainer.innerHTML = "";
@@ -295,6 +305,7 @@
 </body>
 
 </html>
+
 
 
 
