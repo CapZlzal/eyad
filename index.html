@@ -201,17 +201,49 @@
         gap: 10px;
       }
     }
+    .scroll-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  background: transparent;
+  direction: rtl;
+}
+
+.scroll-text {
+  display: inline-block;
+  padding-left: 100%;
+  font-size: 22px;
+  color: #238636;
+  font-family: 'Noto Naskh Arabic', serif;
+  animation: scroll 25s linear infinite;
+}
+
+/* حركة انزلاق سلسة */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
   </style>
 </head>
 
 <body>
-  <marquee direction="right" scrollamount="5" behavior="scroll" style="direction: rtl; unicode-bidi: isolate; font-size: 22px; font-family: 'Noto Naskh Arabic', serif; color:#238636;">
-   ۝ إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا ۝
+  
+<div class="scroll-container">
+  <div class="scroll-text">
     ۝ إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا ۝
     ۝ إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا ۝
-    ۝ إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا ۝
-</marquee>
+  </div>
 
+  <div class="scroll-text">
+    ۝ إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا ۝
+    ۝ إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا ۝
+  </div>
+</div>
   <header>
     <a href="https://wa.me/201014665072?text=مرحبا%20أنا%20مهتم%20بمنتجاتك" target="_blank">تواصل عبر واتساب</a>
     <h1>Eyad Store</h1>
@@ -312,6 +344,7 @@
 </body>
 
 </html>
+
 
 
 
