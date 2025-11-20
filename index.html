@@ -2,356 +2,313 @@
 <html lang="ar" dir="rtl">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eyad Store</title>
-  <style>
-    :root {
-      --bg: #0d1117;
-      --card: #161b22;
-      --border: #30363d;
-      --text: #c9d1d9;
-      --muted: #8b949e;
-      --accent: #238636;
-      --accent-hover: #2ea043;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-        Arial, "Noto Sans", sans-serif;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eyad Store</title>
 
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    <style>
+        :root {
+            --bg: #0d1117;
+            --card: #161b22;
+            --border: #30363d;
+            --text: #c9d1d9;
+            --muted: #8b949e;
+            --accent: #238636;
+            --accent-hover: #2ea043;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
 
-    header {
-      width: 100%;
-      max-width: 1200px;
-      padding: 20px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
 
-    header h1 {
-      margin: 0;
-      font-size: 1.8rem;
-    }
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            color: var(--accent);
+            font-size: 22px;
+            text-align: center;
+        }
 
-    header a {
-      text-decoration: none;
-      background: var(--accent);
-      color: white;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background 0.2s;
-    }
+        .marquee span {
+            display: inline-block;
+            animation: scroll-left 18s linear infinite;
+        }
 
-    header a:hover {
-      background: var(--accent-hover);
-    }
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(100%);
+            }
 
-    main {
-      width: 100%;
-      max-width: 1200px;
-      padding: 20px;
-    }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
 
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
+        header {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
-    .filters button {
-      background: var(--card);
-      color: var(--text);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 8px 16px;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
+        header a {
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
 
-    .filters button.active,
-    .filters button:hover {
-      background: var(--accent);
-      color: white;
-    }
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin: 20px auto;
+            max-width: 1200px;
+            flex-wrap: wrap;
+        }
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
+        .filters button {
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
 
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+        .filters .active {
+            background: var(--accent);
+            color: white;
+        }
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
+        .products {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
 
-    .card-media {
-      width: 100%;
-      height: 180px;
-      background: #000;
-    }
+        .card {
+            background: linear-gradient(145deg, #1a1f27, #0c0f14);
+            border-radius: 18px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+        }
 
-    .card-media img,
-    .card-media iframe {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border: none;
-    }
+        .card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.65);
+        }
 
-    .card-content {
-      padding: 16px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+        .card-media {
+            width: 100%;
+            height: 180px;
+            background: #000;
+        }
 
-    .card-content h3 {
-      margin: 0 0 8px 0;
-      font-size: 1.2rem;
-    }
+        .card-media img,
+        .card-media iframe {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+            border-radius: 18px 18px 0 0;
+        }
 
-    .card-content p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 12px;
-    }
+        .card-content {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
 
-    .price {
-      font-weight: bold;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
+        .card-content h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
 
-    .actions {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
+        .card-content p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
 
-    .actions a,
-    .actions button {
-      flex: 1;
-      text-align: center;
-      text-decoration: none;
-      padding: 8px;
-      border-radius: 8px;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
+        .price {
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 1rem;
+        }
 
-    .actions a {
-      background: var(--border);
-      color: var(--text);
-    }
+        .select-btn {
+            background: var(--accent);
+            color: white;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
 
-    .actions a:hover {
-      background: var(--accent-hover);
-      color: white;
-    }
+        .select-btn:hover {
+            background: var(--accent-hover);
+        }
 
-    .actions button {
-      background: var(--accent);
-      color: white;
-    }
+        .wrap-box {
+            max-width: 500px;
+            margin: 30px auto;
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 12px;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
 
-    .actions button:hover {
-      background: var(--accent-hover);
-    }
+        select {
+            width: 100%;
+            padding: 10px;
+            background: var(--bg);
+            color: white;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            font-size: 1rem;
+        }
 
-    footer {
-      margin-top: 40px;
-      padding: 20px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      text-align: center;
-      font-size: 0.9rem;
-    }
+        .finish-btn {
+            margin-top: 12px;
+            background: var(--accent);
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
 
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
-
-.marquee {
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  box-sizing: border-box;
-  padding: 10px 0;
-  color: #238636;
-  font-size: 22px;
-  font-family: 'Noto Naskh Arabic', serif;
-}
-
-.marquee span {
-  display: inline-block;
-  animation: scroll-left 15s linear infinite;
-}
-
-@keyframes scroll-left {
-  0%   { transform: translateX(0); }        /* النص ظاهر فور فتح الموقع */
-  100% { transform: translateX(100%); }     /* يتحرك لليمين */
-}
-
-  </style>
+        .finish-btn:hover {
+            background: var(--accent-hover);
+        }
+    </style>
 </head>
 
 <body>
-<div class="marquee">
-  <span>
-    ۝ إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا ۝
-    ۝ إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا ۝
-    ۝ إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا ۝
-  </span>
-</div>
-  <header>
-    <a href="https://wa.me/201014665072?text=مرحبا%20أنا%20مهتم%20بمنتجاتك" target="_blank">تواصل عبر واتساب</a>
-    <h1>Eyad Store</h1>
-  </header>
 
-  <main>
+    <div class="marquee"><span> ۝ إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ
+            آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا ۝ </span></div>
+
+    <header>
+        <a href="https://wa.me/201014665072">تواصل عبر واتساب</a>
+        <h1>Eyad Store</h1>
+    </header>
+
     <div class="filters" id="filters"></div>
     <div class="products" id="products"></div>
-  </main>
 
-  <footer>
-    © 2025 — موقع إياد محمد صالح
-  </footer>
+    <div class="wrap-box" id="wrapBox">
+        <h3>اختر نوع التغليف</h3>
+        <select id="wrapSelect">
+            <option value="تغليف عادي">تغليف عادي</option>
+            <option value="تغليف هدية">تغليف هدية</option>
+            <option value="تغليف مميز">تغليف مميز</option>
+        </select>
+        <button class="finish-btn" onclick="finishOrder()">إتمام الطلب</button>
+    </div>
 
-  <script>
-    const WHATSAPP = "201014665072";
-    const products = [
-      { id: 1, title: "Magic Mug", category: "هدايا", price: 250, img: "https://youtube.com/shorts/FK7l9huS8aE?si=_anjZ6hIr_iJ1OhW", desc: "مج سحري يمكنك اضافة 3 صور علي المج الخاص بك." },
-      { id: 3, title: "عصير برتقال", category: "مشروبات", price: 30, img: "https://img-global.cpcdn.com/recipes/9c0d7613848f6431/240x320cq80/photo.jpg", desc: "عصير طبيعي فريش معمول من فواكه طازة ومتختارش غير الأجود" },
-      { id: 4, title: "Mug", category: "هدايا", price: 200, img: "https://i5.walmartimages.com/seo/CafePress-Abby-Normal-Mug-11-oz-Ceramic-Mug-Novelty-Coffee-Tea-Cup_9eaeab05-fc07-41b5-8ebd-8ec6a055cd17.7d660b5e96e6264e1d17e109b2c71ea8.jpeg", desc: "مج أنيق عملي تقدر تستخدمه كل يوم للقهوة أو الشاي" }
-    
-    ];
+    <script>
+        const WHATSAPP = "201014665072";
 
-    const filtersContainer = document.getElementById("filters");
-    const productsContainer = document.getElementById("products");
+        const products = [
+            { id: 1, title: "Magic Mug", category: "هدايا", price: 250, img: "https://youtube.com/shorts/FK7l9huS8aE?si=_anjZ6hIr_iJ1OhW", desc: "مج سحري يمكنك اضافة 3 صور." },
+            { id: 3, title: "عصير برتقال", category: "مشروبات", price: 30, img: "https://img-global.cpcdn.com/recipes/9c0d7613848f6431/240x320cq80/photo.jpg", desc: "عصير طبيعي فريش." },
+            { id: 4, title: "Mug", category: "هدايا", price: 200, img: "https://i5.walmartimages.com/seo/CafePress-Abby-Normal-Mug.jpeg", desc: "مج أنيق عملي." }
+        ];
 
-    const categories = ["الكل", ...new Set(products.map(p => p.category))];
-    let currentCategory = "الكل";
+        let selected = [];
 
-   function getMediaHTML(url) {
-  // لو الرابط من يوتيوب
-  if (url.includes("youtube.com") || url.includes("youtu.be")) {
-    let videoId = "";
-    if (url.includes("watch?v=")) {
-      videoId = url.split("watch?v=")[1].split("&")[0];
-    } else if (url.includes("youtu.be/")) {
-      videoId = url.split("youtu.be/")[1].split("?")[0];
-    } else if (url.includes("shorts/")) {
-      videoId = url.split("shorts/")[1].split("?")[0];
-    }
+        function extractYouTubeID(url) {
+            if (url.includes("shorts/")) return url.split("shorts/")[1].split("?")[0];
+            if (url.includes("watch?v=")) return url.split("watch?v=")[1].split("&")[0];
+            if (url.includes("youtu.be/")) return url.split("youtu.be/")[1].split("?")[0];
+            return null;
+        }
 
-    return `
-      <iframe 
-        src="https://www.youtube.com/embed/${videoId}" 
-        allowfullscreen 
-        style="width:100%;height:100%;border:none;">
-      </iframe>
-    `;
-  }
+        function getMediaHTML(url) {
+            const id = extractYouTubeID(url);
+            if (id) return `<iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe>`;
+            return `<img src="${url}" />`;
+        }
 
-  // لو الرابط صورة
-  if (/\.(jpg|jpeg|png|webp|gif)$/i.test(url) || url.includes("picsum.photos")) {
-    return `<img src="${url}" alt="صورة المنتج">`;
-  }
+        const categories = ["الكل", ...new Set(products.map(p => p.category))];
+        let currentCategory = "الكل";
 
-  // أي شيء تاني يعرضه كصورة افتراضية
-  return `<img src="https://via.placeholder.com/600x400?text=No+Preview" alt="Preview">`;
-}
+        function renderFilters() {
+            document.getElementById("filters").innerHTML = categories
+                .map(cat => `<button class="${cat === currentCategory ? 'active' : ''}" onclick="setCategory('${cat}')">${cat}</button>`)
+                .join("");
+        }
 
+        function setCategory(cat) {
+            currentCategory = cat;
+            renderFilters();
+            renderProducts();
+        }
 
-    function renderFilters() {
-      filtersContainer.innerHTML = "";
-      categories.forEach(cat => {
-        const btn = document.createElement("button");
-        btn.textContent = cat;
-        btn.className = cat === currentCategory ? "active" : "";
-        btn.onclick = () => {
-          currentCategory = cat;
-          renderFilters();
-          renderProducts();
-        };
-        filtersContainer.appendChild(btn);
-      });
-    }
+        function toggleSelect(id) {
+            if (selected.includes(id)) selected = selected.filter(x => x !== id);
+            else selected.push(id);
+            document.getElementById("wrapBox").style.display = selected.length ? "block" : "none";
+            renderProducts();
+        }
 
-    function renderProducts() {
-      const filtered = currentCategory === "الكل" ? products : products.filter(p => p.category === currentCategory);
-      productsContainer.innerHTML = filtered.map(p => `
-        <div class="card">
-          <div class="card-media">${getMediaHTML(p.img)}</div>
-          <div class="card-content">
-            <div>
-              <h3>${p.title}</h3>
-              <p>${p.desc}</p>
-              ${p.price > 0 ? `<div class="price">${p.price} ج.م</div>` : ""}
-            </div>
-            <div class="actions">
-              <a href="https://wa.me/${WHATSAPP}?text=مرحبا%20أنا%20مهتم%20بمنتج:%20${encodeURIComponent(p.title)}" target="_blank">واتساب</a>
-            </div>
-          </div>
-        </div>
-      `).join("");
-    }
+        function renderProducts() {
+            const filtered = currentCategory === "الكل" ? products : products.filter(p => p.category === currentCategory);
+            document.getElementById("products").innerHTML = filtered.map(p => `
+    <div class='card'>
+      <div class='card-media'>${getMediaHTML(p.img)}</div>
+      <div class='card-content'>
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+        <div class='price'>${p.price} ج.م</div>
+        <button class='select-btn' onclick='toggleSelect(${p.id})'>${selected.includes(p.id) ? "إزالة من الاختيار" : "إضافة إلى الاختيار"}</button>
+      </div>
+    </div>
+  `).join("");
+        }
 
-    renderFilters();
-    renderProducts();
-  </script>
+        function finishOrder() {
+            const wrap = document.getElementById("wrapSelect").value;
+            const chosen = products.filter(p => selected.includes(p.id));
+            let msg = "مرحبا، أرغب في طلب الآتي:%0A";
+            chosen.forEach(p => msg += `• ${p.title} (${p.price} ج.م)%0A`);
+            msg += `%0Aالتغليف: ${wrap}%0A`;
+            window.open(`https://wa.me/${WHATSAPP}?text=${msg}`);
+        }
+
+        renderFilters();
+        renderProducts();
+    </script>
+
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
