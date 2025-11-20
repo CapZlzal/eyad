@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eyad Store</title>
 
-    <style>
+      <style>
         :root {
             --bg: #0d1117;
             --card: #161b22;
@@ -209,6 +209,95 @@
         .finish-btn:hover {
             background: var(--accent-hover);
         }
+
+        /* --- UPDATED STYLES FOR DARK THEME --- */
+
+        /* Wrapper Box for Dark Theme (Uses --card and --border) */
+        .wrap-box {
+            max-width: 500px;
+            margin: 30px auto;
+            /* Use dark theme colors */
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            /* Ensure the text inside the box is visible */
+            color: var(--text);
+            /* Default is display: none; but removed here for demonstration */
+            /* display: none; */
+        }
+
+        /* Heading Style for Dark Theme */
+        .wrap-box h3 {
+            font-weight: bold;
+            color: var(--text);
+            /* Use main text color */
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+            /* Use border color for separator */
+            font-size: 1.5rem;
+            /* Slightly larger heading */
+        }
+
+        /* Select Menu (Dropdown) Styling for Dark Theme */
+        #wrapSelect {
+            display: block;
+            width: 100%;
+            padding: 10px 14px;
+            /* Standard padding */
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--text);
+            /* White/Light text */
+            background-color: var(--bg);
+            /* Darker background for the input */
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            /* Square/Rounded corners */
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            margin-bottom: 15px;
+            cursor: pointer;
+
+            /* Custom Arrow Icon (Using a dark stroke to be visible on the dark background) */
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23c9d1d9' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 16px 12px;
+        }
+
+        /* Select focus style for Dark Theme */
+        #wrapSelect:focus {
+            border-color: var(--accent);
+            /* Accent color on focus */
+            outline: 0;
+            box-shadow: 0 0 0 0.25rem rgba(35, 134, 54, 0.25);
+            /* Subtle glow using accent color */
+        }
+
+        /* Finish Button Styling (Uses --accent color) */
+        .finish-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            /* Button text should remain white */
+            background-color: var(--accent);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .finish-btn:hover {
+            background-color: var(--accent-hover);
+        }
     </style>
 </head>
 
@@ -225,16 +314,18 @@
     <div class="filters" id="filters"></div>
     <div class="products" id="products"></div>
 
-    <div class="wrap-box" id="wrapBox">
+<div class="wrap-box" id="wrapBox">
+
         <h3>اختر نوع التغليف</h3>
+
         <select id="wrapSelect">
-            <option value="تغليف عادي">تغليف عادي</option>
-            <option value="تغليف هدية">تغليف هدية</option>
-            <option value="تغليف مميز">تغليف مميز</option>
+            <option value="تغليف عادي" selected>تغليف عادي (Standard)</option>
+            <option value="تغليف هدية">تغليف هدية (Gift Wrap)</option>
+            <option value="تغليف مميز">تغليف مميز (Premium Wrap)</option>
         </select>
+
         <button class="finish-btn" onclick="finishOrder()">إتمام الطلب</button>
     </div>
-
     <script>
         const WHATSAPP = "201014665072";
 
@@ -312,4 +403,5 @@
 </body>
 
 </html>
+
 
